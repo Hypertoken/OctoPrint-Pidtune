@@ -4,7 +4,7 @@ Graphical UI for using the Marlin built in PID autotune function.
 
 After autotuning sequence is completed you can modify parameters manually and the hit "Apply" to make new parameters active and "Save" to save to EEPROM.
 
-Only tested on Big Box Dual.
+forked from tohara/OctoPrint-Pidtune "Tom Haraldseid"
 
 ## Setup
 
