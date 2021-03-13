@@ -70,7 +70,9 @@
 <!-- PID data Panel -->
 <div class="pid-panel" style="display: none;" data-bind="visible: loginState.isUser() && isOperational() && !isPrinting()">
     <h1>PID Data</h1>
-    
+	<p>   
+	    	<button class="btn btn-block " data-bind="click: function() { $root.currentBtn() }">Get Current</button>
+	</p>
     <p>	
 		<h5>
 			Bias: <span id="bias" class="text-info" data-bind="text : pidData.bias()"></span>
@@ -121,9 +123,6 @@
 			</h5>
 		</form>
 		
-	</p>
-	<p>   
-	    	<button class="btn btn-block " data-bind="click: function() { $root.currentBtn() }">Get Current</button>
 	</p>
 	<p>   
 	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.applyBtn() }">Apply</button>
