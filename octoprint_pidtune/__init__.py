@@ -46,13 +46,13 @@ class PidtunePlugin(octoprint.plugin.SettingsPlugin,
 
 				# version check: github repository
 				type="github_commit",
-				user="Hypertoken",
+				user="hypertoken",
 				repo="OctoPrint-Pidtune",
                 #branch="dev",
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/tohara/OctoPrint-Pidtune/archive/{target_version}.zip"
+				pip="https://github.com/hypertoken/OctoPrint-Pidtune/archive/{target_version}.zip"
 			)
 		)
 

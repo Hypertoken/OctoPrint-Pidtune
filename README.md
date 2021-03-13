@@ -11,6 +11,6 @@ Only tested on Big Box Dual.
 Install via the bundled [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager)
 or manually using this URL:
 
-    https://github.com/tohara/OctoPrint-Pidtune/archive/master.zip
+    https://github.com/hypertoken/OctoPrint-Pidtune/archive/master.zip
 
 
