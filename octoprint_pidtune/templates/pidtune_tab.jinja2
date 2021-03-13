@@ -24,16 +24,6 @@
 			</h5>
 		</p>
 	</div> 
-	<h2>Manual</h2>
-	
-	<div>
-    	<p>	
-			<h5>
-				Step: <input type="text" id="step-target" class="valueInput" style="width: 50px" data-bind="value : stepSize" />
-			</h5>
-		</p>
-	</div> 
-    
 </div>
 
 <!-- Control Panel -->
@@ -50,7 +40,7 @@
 	</p>
 
 	
-	<h2>Manual</h2>
+	<h2>Temperature</h2>
 	<div>
 		<p>   
 	    	<button class="btn btn-block" data-bind="click: function() { $root.manualBtn() }">Set Target</button>
@@ -59,12 +49,15 @@
 	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.incBtn() }">Inc</button>
 	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.decBtn() }">Dec</button>
 		</p>
+    	<p>	
+			<h5>
+				Step: <input type="text" id="step-target" class="valueInput" style="width: 50px" data-bind="value : stepSize" />
+			</h5>
+		</p>
 		<p>   
 	    	<button class="btn btn-block" data-bind="click: function() { $root.offBtn() }">Off</button>
 		</p>
-    </div>
-    
-    
+	</div> 
 </div>
 
 <!-- PID data Panel -->
