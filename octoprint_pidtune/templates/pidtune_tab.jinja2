@@ -40,14 +40,18 @@
 	</p>
 
 	
-	<h2>Temperature</h2>
+	<h2>Manual Temp</h2>
 	<div>
 		<p>   
 	    	<button class="btn btn-block" data-bind="click: function() { $root.manualBtn() }">Set Target</button>
+		</p><p>	
+			<h5>
+				Step: <input type="text" id="step-target" class="valueInput" style="width: 50px" data-bind="value : stepSize" />
+			</h5>
 		</p>
 		<p>   
-	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.incBtn() }">Inc</button>
-	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.decBtn() }">Dec</button>
+	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.incBtn() }">+</button>
+	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.decBtn() }">-</button>
 		</p>
     	<p>	
 			<h5>
