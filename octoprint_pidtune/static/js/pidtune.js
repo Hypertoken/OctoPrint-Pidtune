@@ -44,7 +44,9 @@ $(function() {
         self.target = ko.observable("200");
         self.cycles = ko.observable("8");
         self.stepSize = ko.observable("10");
-        
+
+        self.autoSave = ko.observable("0");
+
         self.pidAutoState = ko.observable("Ready");
         
         self._printerProfileUpdated = function() {
@@ -159,15 +161,30 @@ $(function() {
         self.pidData.kd.subscribe(self.updatePidDataT);
         self.pidData.ti.subscribe(function(newValue) {self.pidData.ki(self.pidData.kp() / newValue)});
         self.pidData.td.subscribe(function(newValue) {self.pidData.kd(self.pidData.kp() * newValue)});
+
+        
+        self.autoSave = function() {
+            if (self.autoSave() == "0") {
+                self.autoSave("1")
+            }else {
+                self.autoSave("0")
+            }
+        }
         
         
         self.autoBtn = function() {
         	if (self.selectedController().slice(0,4) == 'Tool') {
+                if (self.autoSave() == "0") {
         			self.sendCommand("M303 E" + self.selectedController().slice(4,5) + " S" + self.target() + " C" + self.cycles());
-        			
+                }else {
+        			self.sendCommand("M303 E" + self.selectedController().slice(4,5) + " S" + self.target() + " C" + self.cycles() + " U1");
+                }
         	}else if (self.selectedController() == 'Bed') {
+                if (self.autoSave() == "0") {
         			self.sendCommand("M303 E-1 S" + self.target() + " C" + self.cycles());
-        			
+                }else {
+        			self.sendCommand("M303 E-1 S" + self.target() + " C" + self.cycles() + " U1");
+                }
         	}
         	
         	self.pidAutoState("Running");

@@ -23,6 +23,11 @@
 				Cycles: <input type="text" id="cycle" class="valueInput" style="width: 50px" data-bind="value : cycles" />
 			</h5>
 		</p>
+		<p>
+			<h5>
+				Auto Save<input type="checkbox" value="0" data-bind="value: autoSave">
+			</h5>
+		</p>
 	</div> 
 </div>
 
@@ -36,7 +41,7 @@
 	</p>
     
     <p>   
-    	<button class="btn btn-block" data-bind="click: function() { $root.autoBtn() }, enable: pidAutoState() != 'Running'">Start Autotuning</button>
+    	<button class="btn btn-block" data-bind="click: function() { $root.autoBtn() }, enable: pidAutoState() != 'Running'">Start PID</button>
 	</p>
 
 	
@@ -44,19 +49,13 @@
 	<div>
 		<p>   
 	    	<button class="btn btn-block" data-bind="click: function() { $root.manualBtn() }">Set Target</button>
-		</p><p>	
-			<h5>
-				Step: <input type="text" id="step-target" class="valueInput" style="width: 50px" data-bind="value : stepSize" />
-			</h5>
+		</p>
+		<p>	
+			<input type="number" id="step-target" class="valueInput" style="width: 50px" data-bind="value : stepSize" /><span class="add-on">°C</span>
 		</p>
 		<p>   
 	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.incBtn() }">+</button>
 	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.decBtn() }">-</button>
-		</p>
-    	<p>	
-			<h5>
-				Step: <input type="text" id="step-target" class="valueInput" style="width: 50px" data-bind="value : stepSize" />
-			</h5>
 		</p>
 		<p>   
 	    	<button class="btn btn-block" data-bind="click: function() { $root.offBtn() }">Off</button>
