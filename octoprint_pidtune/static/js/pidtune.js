@@ -40,7 +40,7 @@ $(function() {
         self.pidData.ti = ko.observable("0");
         self.pidData.td = ko.observable("0");
         self.pidData.model = ko.observable("cl")
-        
+
         self.target = ko.observable("200");
         self.cycles = ko.observable("8");
         self.stepSize = ko.observable("10");
@@ -198,7 +198,7 @@ $(function() {
         
         self.decBtn = function() {
         	var newTarget = parseFloat(self.currentTargetTemp) - parseFloat(self.stepSize());
-        	
+        	if (newTarget < 0) {newTarget = 0;}
         	if (self.selectedController().slice(0,4) == 'Tool') {
         			self.sendCommand("M104 T" + self.selectedController().slice(4,5) + " S" + newTarget);
         			
@@ -413,7 +413,7 @@ $(function() {
         self.pidPlotOptions = {
                 yaxis: {
                     min: 0,
-                    max: 400,
+                    max: 300,
                     ticks: 8
                 },
                 xaxis: {
@@ -451,16 +451,32 @@ $(function() {
         	var actualTemp = self.actTemp && self.actTemp.length ? formatTemperature(self.actTemp[self.actTemp.length - 1][1]) : "-";
             self.currentTargetTemp = self.targetTemp && self.targetTemp.length ? formatTemperature(self.targetTemp[self.targetTemp.length - 1][1]) : "-";
 
-            data.push({
-                label: gettext("Actual") +  ": " + actualTemp,
-                color: "red",
-                data: self.actTemp
-            });
-            data.push({
-                label: gettext("Target") + ": " + self.currentTargetTemp,
-                color: pusher.color("red").tint(0.5).html(),
-                data: self.targetTemp
-            });
+        	if (self.selectedController().slice(0,4) == 'Tool') {
+                
+                data.push({
+                    label: gettext("Actual") +  ": " + actualTemp,
+                    color: "red",
+                    data: self.actTemp
+                });
+                data.push({
+                    label: gettext("Target") + ": " + self.currentTargetTemp,
+                    color: pusher.color("red").tint(0.5).html(),
+                    data: self.targetTemp
+                });
+                
+            }else if (self.selectedController() == 'Bed') {
+                
+                data.push({
+                    label: gettext("Actual") +  ": " + actualTemp,
+                    color: "blue",
+                    data: self.actTemp
+                });
+                data.push({
+                    label: gettext("Target") + ": " + self.currentTargetTemp,
+                    color: pusher.color("blue").tint(0.5).html(),
+                    data: self.targetTemp
+                });
+            }
         	
 
     		$.plot("#pidtune-graph", data, self.pidPlotOptions);

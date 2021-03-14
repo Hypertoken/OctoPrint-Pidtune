@@ -6,9 +6,16 @@
 
 <!-- Setup Panel -->
 <div class="pid-panel" style="display: none;" data-bind="visible: loginState.isUser() && isOperational() && !isPrinting()">
-    <h1>Setup</h1>
-    
-    <div>     
+    <h1>Auto Tune</h1>
+    <div>  
+    <p>	
+		<h5>
+			State: <span class="text-info" data-bind="text : pidAutoState"></span>
+		</h5>
+	</p>
+    <p>   
+    	<button class="btn btn-block" data-bind="click: function() { $root.autoBtn() }, enable: pidAutoState() != 'Running'">Start PID</button>
+	</p>
     	 <select id="pidtune-selectedController" data-bind="options: tempControllers, value: selectedController"></select>
     </div>
     <div>
@@ -19,7 +26,6 @@
 		</p>
 		<p>	
 			<h5>		
-		 		
 				Cycles: <input type="text" id="cycle" class="valueInput" style="width: 50px" data-bind="value : cycles" />
 			</h5>
 		</p>
@@ -27,33 +33,24 @@
 </div>
 
 <!-- Control Panel -->
-<div class="pid-panel" style="display: none;" data-bind="visible: loginState.isUser() && isOperational() && !isPrinting()">
-    <h1>Control</h1>
-    <p>	
-		<h5>
-			State: <span class="text-info" data-bind="text : pidAutoState"></span>
-		</h5>
-	</p>
-    
-    <p>   
-    	<button class="btn btn-block" data-bind="click: function() { $root.autoBtn() }, enable: pidAutoState() != 'Running'">Start PID</button>
-	</p>
-
-	
-	<h2>Manual Temp</h2>
-	<div>
+<div class="pid-panel" style="display: none;" data-bind="visible: loginState.isUser() && isOperational() && !isPrinting()">	
+	<h1>Manual Control</h1>
+	<div class="input-append control-box">
 		<p>   
 	    	<button class="btn btn-block" data-bind="click: function() { $root.manualBtn() }">Set Target</button>
 		</p>
-		<p>	
-			<input type="number" id="step-target" class="valueInput" style="width: 50px" data-bind="value : stepSize" /><span class="add-on">°C</span>
-		</p>
-		<p>   
-	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.incBtn() }">+</button>
-	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.decBtn() }">-</button>
-		</p>
 		<p>   
 	    	<button class="btn btn-block" data-bind="click: function() { $root.offBtn() }">Off</button>
+		</p>
+	<h2>Change Temp</h2>
+		<p>   
+	    	<span><button class="btn" style="width: 48%" data-bind="click: function() { $root.incBtn() }">+</button>
+	    	<button class="btn" style="width: 48%" data-bind="click: function() { $root.decBtn() }">-</button></span>
+		</p>
+		<p>
+			<h5>
+				<input type="number" id="step-target" class="input-mini text-right" style="width: 50px" data-bind="value : stepSize" /><span class="add-on"> +/- °C</span>
+			</h5>
 		</p>
 	</div> 
 </div>
@@ -99,7 +96,7 @@
 		
 		Td: <input type="text" id="Td" class="valueInput" name="Td" style="width: 50px" data-bind="value : pidData.td" />
 	</p>	
-
+	<h2> Edit PID </h2>
 	<p>
 		<form>
 			<h5>
